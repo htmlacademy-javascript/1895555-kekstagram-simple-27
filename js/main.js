@@ -6,8 +6,6 @@ function getRandomPositiveInteger(a, b) {
   return Math.floor(result);
 }
 
-getRandomPositiveInteger();
-
 //Функция проверки длинны строки
 
 function checkLength(string, maxLength) {
@@ -18,9 +16,9 @@ function checkLength(string, maxLength) {
   return false;
 }
 
-checkLength();
-
 // Генерация данных. Задача для Кексаграм (НЕ простой)
+
+// Описание фото
 
 const DESCRIPTIONS = [
   'Закат',
@@ -39,6 +37,7 @@ const DESCRIPTIONS = [
   'Король 777'
 ];
 
+// Комментаторы
 const COMMENTS = [
   {
     id: getRandomPositiveInteger(1, 125),
@@ -66,10 +65,13 @@ const COMMENTS = [
   }
 ];
 
+//Число нужных нам экземпляров
 const SIMILAR_DESCRIPTION_PHOTO_COUNT = 25;
+
+//Колбэк рандомного элемента массива
 const getRandomArrayElement = (elements) => elements[getRandomPositiveInteger(0, elements.length - 1)];
 
-const descriptionPhoto = () => ({
+const getPhotos = () => ({
   id: getRandomPositiveInteger(1, 25),
   url: `photos/${getRandomPositiveInteger(1, 25)}.jpg`,
   description: getRandomArrayElement(DESCRIPTIONS),
@@ -77,10 +79,13 @@ const descriptionPhoto = () => ({
   comments: getRandomArrayElement(COMMENTS)
 });
 
+// Указываем нужное колличество экземпляров
+
 const similarDescriptionPhoto = Array.from({
   length: SIMILAR_DESCRIPTION_PHOTO_COUNT
-}, descriptionPhoto);
+}, getPhotos);
 
-// eslint ругается на console.log, но без console.log {object object} в консоли то нормально не вывести..
-
+// eslint ругается на console.log,  и gitHub ругается на console.log при отправки pull requests
+// но без console.log {object object} в консоли то нормально не вывести..
+// так же, при запуске проекта через npm start не отображается в консоли выполненный код.
 console.log(similarDescriptionPhoto);
