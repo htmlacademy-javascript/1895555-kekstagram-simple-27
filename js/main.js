@@ -71,8 +71,8 @@ const SIMILAR_DESCRIPTION_PHOTO_COUNT = 25;
 //Колбэк рандомного элемента массива
 const getRandomArrayElement = (elements) => elements[getRandomPositiveInteger(0, elements.length - 1)];
 
-const getPhotos = () => ({
-  id: getRandomPositiveInteger(1, 25),
+const getPhotos = (comID) => ({
+  id: comID,
   url: `photos/${getRandomPositiveInteger(1, 25)}.jpg`,
   description: getRandomArrayElement(DESCRIPTIONS),
   likes: getRandomPositiveInteger(15, 200),
@@ -81,11 +81,12 @@ const getPhotos = () => ({
 
 // Указываем нужное колличество экземпляров
 
-const similarDescriptionPhoto = Array.from({
+const getDescriptionPhoto = Array.from({
   length: SIMILAR_DESCRIPTION_PHOTO_COUNT
-}, getPhotos);
+}, (v,k) => getPhotos(k));
 
 // eslint ругается на console.log,  и gitHub ругается на console.log при отправки pull requests
 // но без console.log {object object} в консоли то нормально не вывести..
-// так же, при запуске проекта через npm start не отображается в консоли выполненный код.
-console.log(similarDescriptionPhoto);
+// ТАК ЖЕ, при запуске проекта через npm start НЕ ОТОБРАЖАЕТСЯ в консоли выполненный код.
+console.log(getDescriptionPhoto);
+
