@@ -20,5 +20,4 @@ const getDescriptionPhoto = () => Array.from({
   length: SIMILAR_DESCRIPTION_PHOTO_COUNT
 }, (v,k) => getPhotos(k));
 
-
 export{getDescriptionPhoto};
