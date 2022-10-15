@@ -7,7 +7,6 @@ function getRandomPositiveInteger(a, b) {
 }
 
 //Функция проверки длинны строки
-
 function checkLength(string, maxLength) {
   const stringLenght = string.length;
   if (stringLenght <= maxLength) {
@@ -19,7 +18,6 @@ function checkLength(string, maxLength) {
 // Генерация данных. Задача для Кексаграм (НЕ простой)
 
 // Описание фото
-
 const DESCRIPTIONS = [
   'Закат',
   'Прекрасное далеко',
@@ -38,31 +36,30 @@ const DESCRIPTIONS = [
 ];
 
 // Комментаторы
-const COMMENTS = [
-  {
-    id: getRandomPositiveInteger(1, 125),
-    avatar: `img/avatar-${getRandomPositiveInteger(1, 600)}.svg`,
-    message: 'В целом всё неплохо. Но не всё.',
-    name: 'Енакентий',
-  },
-  {
-    id: getRandomPositiveInteger(1, 125),
-    avatar: `img/avatar-${getRandomPositiveInteger(1, 600)}.svg`,
-    message: 'Лица у людей на фотке перекошены, как будто их избивают.',
-    name: 'Лолита',
-  },
-  {
-    id: getRandomPositiveInteger(1, 125),
-    avatar: `img/avatar-${getRandomPositiveInteger(1, 600)}.svg`,
-    message: 'Когда вы делаете фотографию, хорошо бы убирать палец из кадра.',
-    name: 'Гектар',
-  },
-  {
-    id: getRandomPositiveInteger(1, 125),
-    avatar: `img/avatar-${getRandomPositiveInteger(1, 600)}.svg`,
-    message: 'Всё отлично!',
-    name: 'Рудольф',
-  }
+const COMMENTS = [{
+  id: getRandomPositiveInteger(1, 125),
+  avatar: `img/avatar-${getRandomPositiveInteger(1, 600)}.svg`,
+  message: 'В целом всё неплохо. Но не всё.',
+  name: 'Енакентий',
+},
+{
+  id: getRandomPositiveInteger(1, 125),
+  avatar: `img/avatar-${getRandomPositiveInteger(1, 600)}.svg`,
+  message: 'Лица у людей на фотке перекошены, как будто их избивают.',
+  name: 'Лолита',
+},
+{
+  id: getRandomPositiveInteger(1, 125),
+  avatar: `img/avatar-${getRandomPositiveInteger(1, 600)}.svg`,
+  message: 'Когда вы делаете фотографию, хорошо бы убирать палец из кадра.',
+  name: 'Гектар',
+},
+{
+  id: getRandomPositiveInteger(1, 125),
+  avatar: `img/avatar-${getRandomPositiveInteger(1, 600)}.svg`,
+  message: 'Всё отлично!',
+  name: 'Рудольф',
+}
 ];
 
 //Число нужных нам экземпляров
@@ -83,10 +80,12 @@ const getPhotos = (comID) => ({
 
 const getDescriptionPhoto = Array.from({
   length: SIMILAR_DESCRIPTION_PHOTO_COUNT
-}, (v,k) => getPhotos(k));
+}, (v, k) => getPhotos(k));
 
 // eslint ругается на console.log,  и gitHub ругается на console.log при отправки pull requests
 // но без console.log {object object} в консоли то нормально не вывести..
 // ТАК ЖЕ, при запуске проекта через npm start НЕ ОТОБРАЖАЕТСЯ в консоли выполненный код.
+
 console.log(getDescriptionPhoto);
 
+export{checkLength};
