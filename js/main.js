@@ -81,12 +81,16 @@ const getPhotos = (comID) => ({
 
 // Указываем нужное колличество экземпляров
 
-const getDescriptionPhoto = Array.from({
+const DescriptionPhoto = Array.from({
   length: SIMILAR_DESCRIPTION_PHOTO_COUNT
 }, (v,k) => getPhotos(k));
 
 // eslint ругается на console.log,  и gitHub ругается на console.log при отправки pull requests
 // но без console.log {object object} в консоли то нормально не вывести..
 // ТАК ЖЕ, при запуске проекта через npm start НЕ ОТОБРАЖАЕТСЯ в консоли выполненный код.
-console.log(getDescriptionPhoto);
+console.log(DescriptionPhoto);
 
+export {
+  DescriptionPhoto,
+  checkLength,
+};
