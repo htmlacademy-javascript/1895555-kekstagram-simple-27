@@ -3,8 +3,10 @@ import {
   getDescriptionPhoto
 } from './data.js';
 
+
 import {
   miniaturePhotos
 } from './miniature.js';
 
 miniaturePhotos();
+
