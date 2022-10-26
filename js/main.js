@@ -1,9 +1,10 @@
 import {
+  // eslint-disable-next-line no-unused-vars
   getDescriptionPhoto
 } from './data.js';
 
-// но без console.log {object object} в консоли то нормально не вывести..
-// ТАК ЖЕ, при запуске проекта через npm start НЕ ОТОБРАЖАЕТСЯ в консоли выполненный код.
+import {
+  miniaturePhotos
+} from './miniature.js';
 
-// eslint-disable-next-line no-console
-console.log(getDescriptionPhoto());
+miniaturePhotos();
