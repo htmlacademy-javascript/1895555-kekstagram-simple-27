@@ -14,7 +14,7 @@ const getRandomArrayElement = (elements) => elements[getRandomPositiveInteger(0,
 //Сборка объекта
 const getPhotos = (com) => ({
   id: com + 1,
-  url: `photos/${com}.jpg`,
+  url: `photos/${com + 1}.jpg`,
   description: getRandomArrayElement(DESCRIPTIONS),
   likes: getRandomPositiveInteger(15, 200),
   comments: getRandomPositiveInteger(0, 200),
