@@ -19,8 +19,8 @@ function miniaturePhotos() {
     clonePictureTemplate.querySelector('.picture__comments').textContent = comments;
     clonePictureTemplate.querySelector('.picture__img').src = url;
     fragment.appendChild(clonePictureTemplate);
-    picture.appendChild(fragment);
   });
+  picture.appendChild(fragment);
 }
 
 export {
