@@ -21,9 +21,16 @@ const DESCRIPTIONS = [
 //Число нужных нам экземпляров
 const SIMILAR_DESCRIPTION_PHOTO_COUNT = 25;
 
+//Минимальная длинна строки
+const MINLENGTHCOMMENT = 20;
+//Максимальная длинна строки
+const MAXLENGTHCOMMENT = 140;
+
 
 export {
   DESCRIPTIONS,
-  SIMILAR_DESCRIPTION_PHOTO_COUNT
+  SIMILAR_DESCRIPTION_PHOTO_COUNT,
+  MINLENGTHCOMMENT,
+  MAXLENGTHCOMMENT
 };
 
