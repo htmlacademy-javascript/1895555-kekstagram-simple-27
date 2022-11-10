@@ -1,3 +1,5 @@
+// user_module.js — модуль модального окна.
+
 import {
   isEscapeKey,
   isEnterKey
@@ -22,6 +24,7 @@ function openUserModule (){
   bodyNewStyle.classList.toggle('modal-open');
 
   document.addEventListener('keydown', onPopupEscKeydown);
+  document.removeEventListener('keydown', onPopupEscKeydown);
 }
 
 imgUpload.addEventListener('change', () => {
@@ -38,8 +41,6 @@ imgUpload.addEventListener('change', (evt) => {
 function closeUserModule (){
   userModuleSetting.classList.add('hidden');
   bodyNewStyle.classList.toggle('modal-open');
-
-  imgUpload.innerHTML = '';
 
   document.removeEventListener('keydown', onPopupEscKeydown);
 }
