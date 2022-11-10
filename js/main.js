@@ -5,6 +5,7 @@ import {
   getDescriptionPhoto
 } from './data.js';
 
+
 import {
   miniaturePhotos
 } from './miniature.js';
@@ -18,4 +19,6 @@ import ('./photo_scale.js');
 import ('./photo_effects.js');
 
 miniaturePhotos();
+
 onUserModule();
+
