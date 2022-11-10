@@ -56,12 +56,10 @@ noUiSlider.create(slider, {
   connect: 'lower',
 });
 
-
 getSlider();
 //изменение параметров слайдера и эффекта при нажатии
 effectList.addEventListener('change', onListChange);
 //слушатель изменения положения слайдера
 slider.noUiSlider.on('update', onSliderUpdate);
-
 
 export{};
