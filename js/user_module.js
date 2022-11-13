@@ -1,9 +1,8 @@
 // user_module.js — модуль модального окна.
-
-import {
-  isEscapeKey,
-  isEnterKey
-} from './util.js';
+import {scaleReset} from './photo_scale.js';
+import {onUserModule} from './user_validator.js';
+import {isEscapeKey, isEnterKey} from './util.js';
+import {getEffectSlider, resetSliderImg} from './photo_effects.js';
 
 const bodyNewStyle = document.querySelector('body');
 const userModuleForm = document.querySelector('.img-upload__form');
@@ -22,37 +21,39 @@ const onPopupEscKeydown = function (evt) {
 function openUserModule (){
   userModuleSetting.classList.remove('hidden');
   bodyNewStyle.classList.toggle('modal-open');
+  getEffectSlider();
+  onUserModule();
+  scaleReset();
 
   document.addEventListener('keydown', onPopupEscKeydown);
+}
+
+//Функция закрытия модального окна
+function closeUserModule (){
+  resetSliderImg();
+  userModuleSetting.classList.add('hidden');
+  bodyNewStyle.classList.toggle('modal-open');
+  imgUpload.innerHTML = '';
+
   document.removeEventListener('keydown', onPopupEscKeydown);
 }
 
-imgUpload.addEventListener('change', () => {
-  openUserModule ();
-});
-
+//Открываем окно
+imgUpload.addEventListener('change', openUserModule);
+//Открываем окно ч/з Enter
 imgUpload.addEventListener('change', (evt) => {
   if (isEnterKey(evt)) {
     openUserModule ();
   }
 });
 
-//Функция закрытия модального окна
-function closeUserModule (){
-  userModuleSetting.classList.add('hidden');
-  bodyNewStyle.classList.toggle('modal-open');
-
-  document.removeEventListener('keydown', onPopupEscKeydown);
-}
-
+//Закрываем окно
+imgUploadCancel.addEventListener('click', closeUserModule);
+//Закрываем окно ч/з Enter
 imgUploadCancel.addEventListener('keydown', (evt) => {
   if (isEnterKey(evt)) {
     closeUserModule();
   }
 });
 
-imgUploadCancel.addEventListener('click', () => {
-  closeUserModule();
-});
-
-export{userModuleForm};
+export{};

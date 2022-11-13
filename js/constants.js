@@ -26,6 +26,15 @@ const MINLENGTHCOMMENT = 20;
 //Максимальная длинна строки
 const MAXLENGTHCOMMENT = 140;
 
+//Минимальный масштаб фото
+const SCALESMIN = 25;
+//Максимальный масштаб фото
+const SCALEMAX = 100;
+//Шаг изменения масштаба фото
+const SCALESTEP = 25;
+//Стандартный масштаб фото
+const SCALEDEFAULT = 100;
+
 //массив с данными фильтров
 const EFFECTS = [
   {
@@ -82,6 +91,10 @@ export {
   SIMILAR_DESCRIPTION_PHOTO_COUNT,
   MINLENGTHCOMMENT,
   MAXLENGTHCOMMENT,
-  EFFECTS
+  EFFECTS,
+  SCALESMIN,
+  SCALEMAX,
+  SCALESTEP,
+  SCALEDEFAULT
 };
 

@@ -2,13 +2,12 @@
 
 import{EFFECTS} from './constants.js';
 
-// const imgPreview = document.querySelector('.img-upload__preview img');
+const imgPreview = document.querySelector('.img-upload__preview img');
 const effectList = document.querySelector('.effects__list');
 const slider = document.querySelector('.effect-level__slider');
 const effectValue = document.querySelector('.effect-level__value');
 
 let changeEffects = EFFECTS[5];
-
 const theDefault = () => changeEffects === EFFECTS[5];
 
 //функция изменения видимости и обновления слайдера с новыми параметрами
@@ -31,19 +30,33 @@ const getSlider = () => {
 //функция для передачи в обработчик выбор нужного импута с эффектом, с условием от которого зависит, какие параметры передать
 const onListChange = (evt) => {
   if (!evt.target.classList.contains('effects__radio')) {
-    return;
+    return evt.target.classList.contains('effects__radio');
+  } else {
+    //находим в массиве необходимое значение эффекта кликнутого элемента и присваем значение к переменной
+    changeEffects = EFFECTS.find((effect) => effect.name === evt.target.value);
+    getSlider();
   }
-  //находим в массиве необходимое значение эффекта кликнутого элемента и присваем значение к переменной
-  changeEffects = EFFECTS.find((effect) => effect.name === evt.target.value);
-  getSlider();
 };
 
 // функция добавления слайдеру необходимых нам стилей фильтров, класса и данных текста
 const onSliderUpdate = () => {
-  const newValueSlider = slider.noUiSlider.get();
-  slider.style.filter = `${changeEffects.style}(${newValueSlider}${changeEffects.unit})`;
-  slider.classList.add(`effects__preview--${changeEffects.name}`);
-  effectValue.value = slider;
+  imgPreview.style.filter = 'none';
+  imgPreview.className = '';
+  imgPreview.value = '';
+  if (theDefault()) {
+    return theDefault();
+  } else {
+    const newValueSlider = slider.noUiSlider.get();
+    imgPreview.style.filter = `${changeEffects.style}(${newValueSlider}${changeEffects.unit})`;
+    imgPreview.classList.add(`effects__preview--${changeEffects.name}`);
+    effectValue.value = slider;
+  }
+};
+
+//сброс эффектов
+const resetSliderImg = () => {
+  changeEffects = EFFECTS[5];
+  getSlider();
 };
 
 noUiSlider.create(slider, {
@@ -56,10 +69,13 @@ noUiSlider.create(slider, {
   connect: 'lower',
 });
 
-getSlider();
-//изменение параметров слайдера и эффекта при нажатии
-effectList.addEventListener('change', onListChange);
-//слушатель изменения положения слайдера
-slider.noUiSlider.on('update', onSliderUpdate);
 
-export{};
+const getEffectSlider = () => {
+  getSlider();
+  //изменение параметров слайдера и эффекта при нажатии
+  effectList.addEventListener('change', onListChange);
+  //слушатель изменения положения слайдера
+  slider.noUiSlider.on('update', onSliderUpdate);
+};
+
+export{getEffectSlider, resetSliderImg};

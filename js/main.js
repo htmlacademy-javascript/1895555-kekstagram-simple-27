@@ -12,13 +12,7 @@ import {
 
 import ('./user_module.js');
 
-import {onUserModule} from './user_validator.js';
-
-import ('./photo_scale.js');
-
 import ('./photo_effects.js');
 
 miniaturePhotos();
-
-onUserModule();
 
