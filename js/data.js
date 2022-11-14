@@ -1,4 +1,4 @@
-// data.js — модуль, который создаёт данные.
+// data.js — модуль создания массивов с данными.
 import {
   getRandomPositiveInteger
 } from './util.js';

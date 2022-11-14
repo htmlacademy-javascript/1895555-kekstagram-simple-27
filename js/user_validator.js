@@ -1,3 +1,5 @@
+// user_validator.js — модуль с проверкой правильности заполненных данных и использованием сторонней библиотеки PristineJS.
+
 import {
   MINLENGTHCOMMENT,
   MAXLENGTHCOMMENT
@@ -13,15 +15,26 @@ const pristine = new Pristine(userModuleForm, {
   errorTextTag: 'div', // Тег, который будет обрамлять текст ошибки
 });
 
-function validateComment(value) {
-  return value.length >= MINLENGTHCOMMENT && value.length <= MAXLENGTHCOMMENT;
+function validateCommentMin(value) {
+  return value.length >= MINLENGTHCOMMENT;
+}
+
+function validateCommentMax(value) {
+  return value.length <= MAXLENGTHCOMMENT;
 }
 
 pristine.addValidator(
-  userModuleForm.querySelector('#description'),
-  validateComment,
-  'От 20 до 140 символов'
+  userModuleForm.querySelector('.text__description'),
+  validateCommentMin,
+  'Менее 20 символов'
 );
+
+pristine.addValidator(
+  userModuleForm.querySelector('.text__description'),
+  validateCommentMax,
+  'Более 140 символов'
+);
+
 
 const onUserModule = () => {
   userModuleForm.addEventListener('submit', (evt) => {
