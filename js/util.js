@@ -9,7 +9,6 @@ function getRandomPositiveInteger(a, b) {
 }
 
 //Функция проверки длинны строки
-
 function checkLength(string, maxLength) {
   const stringLenght = string.length;
   if (stringLenght <= maxLength) {

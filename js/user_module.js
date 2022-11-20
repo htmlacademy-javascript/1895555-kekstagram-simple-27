@@ -1,6 +1,6 @@
 // user_module.js — модуль модального окна.
 import {scaleReset} from './photo_scale.js';
-import {onUserModule} from './user_validator.js';
+import {onUserModule, removeUserModule} from './user_validator.js';
 import {isEscapeKey, isEnterKey} from './util.js';
 import {getEffectSlider, resetSliderImg} from './photo_effects.js';
 
@@ -14,6 +14,7 @@ const onPopupEscKeydown = function (evt) {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
     closeUserModule();
+    imgUpload.innerHTML = '';
   }
 };
 
@@ -26,6 +27,7 @@ function openUserModule (){
   scaleReset();
 
   document.addEventListener('keydown', onPopupEscKeydown);
+  removeUserModule();
 }
 
 //Функция закрытия модального окна
@@ -36,6 +38,7 @@ function closeUserModule (){
   imgUpload.innerHTML = '';
 
   document.removeEventListener('keydown', onPopupEscKeydown);
+  removeUserModule();
 }
 
 //Открываем окно

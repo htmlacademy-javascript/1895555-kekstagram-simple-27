@@ -6,6 +6,7 @@ const imgPreview = document.querySelector('.img-upload__preview img');
 const effectList = document.querySelector('.effects__list');
 const slider = document.querySelector('.effect-level__slider');
 const effectValue = document.querySelector('.effect-level__value');
+const effectLevel = document.querySelector('.img-upload__effect-level');
 
 let changeEffects = EFFECTS[5];
 const theDefault = () => changeEffects === EFFECTS[5];
@@ -24,6 +25,9 @@ const getSlider = () => {
 
   if(theDefault()) {
     slider.classList.add('hidden');
+    effectLevel.classList.add('hidden');
+  } else {
+    effectLevel.classList.remove('hidden');
   }
 };
 

@@ -45,4 +45,14 @@ const onUserModule = () => {
   });
 };
 
-export {onUserModule};
+const removeUserModule = () => {
+  userModuleForm.removeEventListener('submit', (evt) => {
+    const isValid = pristine.validate();
+    if (!isValid) {
+      evt.preventDefault();
+    }
+  });
+};
+
+
+export {onUserModule, removeUserModule};
