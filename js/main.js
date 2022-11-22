@@ -1,18 +1,16 @@
 // main.js — сборщик.
 
-import {
-  // eslint-disable-next-line no-unused-vars
-  getDescriptionPhoto
-} from './data.js';
+import {closeUserModule} from './user_module.js';
 
+import {setUserModule} from './user_validator.js';
 
-import {
-  miniaturePhotos
-} from './miniature.js';
+import {miniaturePhotos} from './miniature.js';
 
-import ('./user_module.js');
+import {getData} from './server.js';
 
-import ('./photo_effects.js');
+getData((pictures) => {
+  miniaturePhotos(pictures);
+});
 
-miniaturePhotos();
+setUserModule(closeUserModule);
 
