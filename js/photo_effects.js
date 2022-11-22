@@ -3,12 +3,13 @@
 import{EFFECTS} from './constants.js';
 
 const imgPreview = document.querySelector('.img-upload__preview img');
-const effectList = document.querySelector('.effects__list');
 const slider = document.querySelector('.effect-level__slider');
 const effectValue = document.querySelector('.effect-level__value');
+const effectButton = document.querySelectorAll('.effects__radio');
 
-let changeEffects = EFFECTS[5];
-const theDefault = () => changeEffects === EFFECTS[5];
+const DEFAULTEFFECTS = EFFECTS[5];
+let changeEffects = DEFAULTEFFECTS;
+const theDefault = () => changeEffects === DEFAULTEFFECTS;
 
 //функция изменения видимости и обновления слайдера с новыми параметрами
 const getSlider = () => {
@@ -30,12 +31,11 @@ const getSlider = () => {
 //функция для передачи в обработчик выбор нужного импута с эффектом, с условием от которого зависит, какие параметры передать
 const onListChange = (evt) => {
   if (!evt.target.classList.contains('effects__radio')) {
-    return evt.target.classList.contains('effects__radio');
-  } else {
-    //находим в массиве необходимое значение эффекта кликнутого элемента и присваем значение к переменной
-    changeEffects = EFFECTS.find((effect) => effect.name === evt.target.value);
-    getSlider();
+    return;
   }
+  //находим в массиве необходимое значение эффекта кликнутого элемента и присваем значение к переменной
+  changeEffects = EFFECTS.find((effect) => effect.name === evt.target.value);
+  getSlider();
 };
 
 // функция добавления слайдеру необходимых нам стилей фильтров, класса и данных текста
@@ -44,38 +44,37 @@ const onSliderUpdate = () => {
   imgPreview.className = '';
   imgPreview.value = '';
   if (theDefault()) {
-    return theDefault();
-  } else {
-    const newValueSlider = slider.noUiSlider.get();
-    imgPreview.style.filter = `${changeEffects.style}(${newValueSlider}${changeEffects.unit})`;
-    imgPreview.classList.add(`effects__preview--${changeEffects.name}`);
-    effectValue.value = slider;
+    return;
   }
+  const newValueSlider = slider.noUiSlider.get();
+  imgPreview.style.filter = `${changeEffects.style}(${newValueSlider}${changeEffects.unit})`;
+  imgPreview.classList.add(`effects__preview--${changeEffects.name}`);
+  effectValue.value = slider;
 };
 
 //сброс эффектов
 const resetSliderImg = () => {
-  changeEffects = EFFECTS[5];
+  effectButton[5].checked = true;
+  changeEffects = DEFAULTEFFECTS;
+  imgPreview.removeAttribute('class');
+  imgPreview.removeAttribute('style');
   getSlider();
 };
 
 noUiSlider.create(slider, {
   range: {
-    min: EFFECTS[5].min,
-    max: EFFECTS[5].max,
+    min: DEFAULTEFFECTS.min,
+    max: DEFAULTEFFECTS.max,
   },
-  start: EFFECTS[5].max,
-  step: EFFECTS[5].step,
+  start: DEFAULTEFFECTS.max,
+  step: DEFAULTEFFECTS.step,
   connect: 'lower',
 });
 
+getSlider();
 
-const getEffectSlider = () => {
-  getSlider();
-  //изменение параметров слайдера и эффекта при нажатии
-  effectList.addEventListener('change', onListChange);
-  //слушатель изменения положения слайдера
-  slider.noUiSlider.on('update', onSliderUpdate);
-};
+//слушатель изменения положения слайдера
+slider.noUiSlider.on('update', onSliderUpdate);
 
-export{getEffectSlider, resetSliderImg};
+
+export{onListChange, resetSliderImg};
