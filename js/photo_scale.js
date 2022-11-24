@@ -1,8 +1,8 @@
 // photo_scale.js — модуль редактирования изображений.
-import {SCALESMIN,
-  SCALEMAX,
-  SCALESTEP,
-  SCALEDEFAULT} from './constants.js';
+import {SCALES_MIN,
+  SCALE_MAX,
+  SCALE_STEP,
+  SCALE_DEFAULT} from './constants.js';
 
 const previewPhoto = document.querySelector('.img-upload__preview').querySelector('img');
 const scaleSmaller = document.querySelector('.scale__control--smaller');
@@ -12,26 +12,26 @@ const scaleValue = document.querySelector('.scale__control--value');
 //Функция уменьшения масштаба
 const onDownScale = () => {
   let scaleControlValue = parseInt(scaleValue.value, 10);
-  if(scaleControlValue > SCALESMIN){
-    scaleControlValue -= SCALESTEP;
+  if(scaleControlValue > SCALES_MIN){
+    scaleControlValue -= SCALE_STEP;
     scaleValue.value = `${scaleControlValue}%`;
-    previewPhoto.style.transform = `scale(${scaleControlValue / SCALEDEFAULT})`;
+    previewPhoto.style.transform = `scale(${scaleControlValue / SCALE_DEFAULT})`;
   }
 };
 
 //Функция увеличения масштаба
 const onUpScale = () => {
   let scaleControlValue = parseInt(scaleValue.value, 10);
-  if(scaleControlValue < SCALEMAX){
-    scaleControlValue += SCALESTEP;
+  if(scaleControlValue < SCALE_MAX){
+    scaleControlValue += SCALE_STEP;
     scaleValue.value = `${scaleControlValue}%`;
-    previewPhoto.style.transform = `scale(${scaleControlValue / SCALEDEFAULT})`;
+    previewPhoto.style.transform = `scale(${scaleControlValue / SCALE_DEFAULT})`;
   }
 };
 
 //Функция добавления обработчиков при изменении масштаба
 const onAddScale = () => {
-  scaleValue.value = `${SCALEDEFAULT}%`;
+  scaleValue.value = `${SCALE_DEFAULT}%`;
   scaleSmaller.addEventListener('click', onDownScale);
   scaleBigger.addEventListener('click', onUpScale);
 };
@@ -42,4 +42,4 @@ const onRemoveScale = () => {
   scaleBigger.removeEventListener('click', onUpScale);
 };
 
-export{scaleValue, previewPhoto, onRemoveScale, onAddScale, SCALEDEFAULT};
+export{scaleValue, previewPhoto, onRemoveScale, onAddScale, SCALE_DEFAULT};
