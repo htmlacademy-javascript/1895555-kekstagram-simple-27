@@ -1,21 +1,21 @@
 // constants.js — модуль, c константами.
 
 //Минимальная длинна строки
-const MINLENGTHCOMMENT = 20;
+const MIN_LENGTH_COMMENT = 20;
 //Максимальная длинна строки
-const MAXLENGTHCOMMENT = 140;
+const MAX_LENGTH_COMMENT = 140;
 
 //Минимальный масштаб фото
-const SCALESMIN = 25;
+const SCALES_MIN = 25;
 //Максимальный масштаб фото
-const SCALEMAX = 100;
+const SCALE_MAX = 100;
 //Шаг изменения масштаба фото
-const SCALESTEP = 25;
+const SCALE_STEP = 25;
 //Стандартный масштаб фото
-const SCALEDEFAULT = 100;
+const SCALE_DEFAULT = 100;
 
 //массив с данными фильтров
-const EFFECTS = [
+const EFFECT = [
   {
     name: 'chrome',
     style: 'grayscale',
@@ -66,12 +66,12 @@ const EFFECTS = [
 
 
 export {
-  MINLENGTHCOMMENT,
-  MAXLENGTHCOMMENT,
-  EFFECTS,
-  SCALESMIN,
-  SCALEMAX,
-  SCALESTEP,
-  SCALEDEFAULT
+  MIN_LENGTH_COMMENT,
+  MAX_LENGTH_COMMENT,
+  EFFECT,
+  SCALES_MIN,
+  SCALE_MAX,
+  SCALE_STEP,
+  SCALE_DEFAULT
 };
 

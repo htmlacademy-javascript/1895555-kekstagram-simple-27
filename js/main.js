@@ -4,12 +4,12 @@ import {closeUserModule} from './user_module.js';
 
 import {setUserModule} from './user_validator.js';
 
-import {miniaturePhotos} from './miniature.js';
+import {createMiniaturePhotos} from './miniature.js';
 
 import {getData} from './server.js';
 
 getData((pictures) => {
-  miniaturePhotos(pictures);
+  createMiniaturePhotos(pictures);
 });
 
 setUserModule(closeUserModule);

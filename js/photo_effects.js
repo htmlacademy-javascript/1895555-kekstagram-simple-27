@@ -1,15 +1,15 @@
 // photo_effects.js — модуль работы с эффектами изображения.
 
-import{EFFECTS} from './constants.js';
+import{EFFECT} from './constants.js';
 
 const imgPreview = document.querySelector('.img-upload__preview img');
 const slider = document.querySelector('.effect-level__slider');
 const effectValue = document.querySelector('.effect-level__value');
 const effectButton = document.querySelectorAll('.effects__radio');
 
-const DEFAULTEFFECTS = EFFECTS[5];
-let changeEffects = DEFAULTEFFECTS;
-const theDefault = () => changeEffects === DEFAULTEFFECTS;
+const DEFAULT_EFFECT = EFFECT[5];
+let changeEffects = DEFAULT_EFFECT;
+const isDefault = () => changeEffects === DEFAULT_EFFECT;
 
 //функция изменения видимости и обновления слайдера с новыми параметрами
 const getSlider = () => {
@@ -23,7 +23,7 @@ const getSlider = () => {
     start: changeEffects.max,
   });
 
-  if(theDefault()) {
+  if(isDefault()) {
     slider.classList.add('hidden');
   }
 };
@@ -34,7 +34,7 @@ const onListChange = (evt) => {
     return;
   }
   //находим в массиве необходимое значение эффекта кликнутого элемента и присваем значение к переменной
-  changeEffects = EFFECTS.find((effect) => effect.name === evt.target.value);
+  changeEffects = EFFECT.find((effect) => effect.name === evt.target.value);
   getSlider();
 };
 
@@ -43,7 +43,7 @@ const onSliderUpdate = () => {
   imgPreview.style.filter = 'none';
   imgPreview.className = '';
   imgPreview.value = '';
-  if (theDefault()) {
+  if (isDefault()) {
     return;
   }
   const newValueSlider = slider.noUiSlider.get();
@@ -55,7 +55,7 @@ const onSliderUpdate = () => {
 //сброс эффектов
 const resetSliderImg = () => {
   effectButton[5].checked = true;
-  changeEffects = DEFAULTEFFECTS;
+  changeEffects = DEFAULT_EFFECT;
   imgPreview.removeAttribute('class');
   imgPreview.removeAttribute('style');
   getSlider();
@@ -63,11 +63,11 @@ const resetSliderImg = () => {
 
 noUiSlider.create(slider, {
   range: {
-    min: DEFAULTEFFECTS.min,
-    max: DEFAULTEFFECTS.max,
+    min: DEFAULT_EFFECT.min,
+    max: DEFAULT_EFFECT.max,
   },
-  start: DEFAULTEFFECTS.max,
-  step: DEFAULTEFFECTS.step,
+  start: DEFAULT_EFFECT.max,
+  step: DEFAULT_EFFECT.step,
   connect: 'lower',
 });
 
