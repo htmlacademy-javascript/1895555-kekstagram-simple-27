@@ -1,5 +1,5 @@
 // user_module.js — модуль модального окна.
-import {SCALEDEFAULT} from './constants.js';
+import {SCALE_DEFAULT} from './constants.js';
 import {scaleValue, previewPhoto, onRemoveScale, onAddScale} from './photo_scale.js';
 import {elementDescription} from './user_validator.js';
 import {isEscapeKey, isEnterKey} from './util.js';
@@ -16,7 +16,7 @@ const onUserModuleReset = () => {
   userModuleSetting.classList.add('hidden');
   bodyNewStyle.classList.toggle('modal-open');
   elementDescription.value = '';
-  scaleValue.value = `${SCALEDEFAULT}%`;
+  scaleValue.value = `${SCALE_DEFAULT}%`;
   previewPhoto.style = 'transform: scale(1)';
   resetSliderImg();
   onRemoveScale();
